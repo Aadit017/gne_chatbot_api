@@ -1,9 +1,11 @@
+// File made entirely for testing , not to be used in production
 fetch("http://localhost:3000/data", {
   method: "POST",
   body: JSON.stringify({
-    userId: 23
+    question:"who are in paris",
+    answer:"niggas"
   }),
   headers: {
     "Content-type": "application/json; charset=UTF-8"
   }
-});
+})
