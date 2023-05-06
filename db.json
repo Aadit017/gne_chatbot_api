@@ -1,14 +1,16 @@
 {
-    "table": [
-        {
-            "id": "Cse@!yFBe5",
-            "question": "what is your name",
-            "answer": "Aadit Singh Bagga"
-        },
-        {
-            "id": "34s@!yFBe5",
-            "question": "Where is Your Nigga From",
-            "answer": "Paris"
-        }
-    ]
+  "users": {
+    "1": {
+      "id": 1,
+      "name": "John Doe",
+      "email": "john.doe@example.com",
+      "age": 35
+    },
+    "2": {
+      "id": 2,
+      "name": "Jane Smith",
+      "email": "jane.smith@example.com",
+      "age": 27
+    }
+  }
 }
