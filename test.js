@@ -2,8 +2,8 @@
 fetch("http://localhost:3000/data", {
   method: "POST",
   body: JSON.stringify({
-    question:"who are in paris",
-    answer:"niggas"
+    question:"what is your name",
+    answer:"Aadit Singh Bagga"
   }),
   headers: {
     "Content-type": "application/json; charset=UTF-8"
