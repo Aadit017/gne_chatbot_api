@@ -2,14 +2,13 @@
   "faqs": {
     "1": {
       "id": 1,
-      "question": "John Doe",
-      "answer": "john.doe@example.com"
+      "question": "Where is the library",
+      "answer": "college mein vai kese bate you doin"
     },
     "2": {
       "id": 2,
-      "name": "Jane Smith",
-      "email": "jane.smith@example.com",
-      "age": 27
+      "question": "What Branch does Aadit study in",
+      "answer": "the one the only ece"
     }
   }
 }
