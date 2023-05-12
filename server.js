@@ -19,22 +19,22 @@ function saveDatabase() {
 }
 
 // Define routes for your API
-app.get('/users', (req, res) => {
-  res.json(database.users);
+app.get('/faqs', (req, res) => {
+  res.json(database.faqs);
 });
 
-app.post('/users', (req, res) => {
+app.post('/faqs', (req, res) => {
   const newUser = req.body;
-  const userId = Object.keys(database.users).length + 1;
+  const userId = Object.keys(database.faqs).length + 1;
   newUser.id = userId;
-  database.users[userId] = newUser;
+  database.faqs[userId] = newUser;
   saveDatabase();
   res.json(newUser);
 });
 
-app.get('/users/:id', (req, res) => {
+app.get('/faqs/:id', (req, res) => {
   const userId = req.params.id;
-  const user = database.users[userId];
+  const user = database.faqs[userId];
   if (user) {
     res.json(user);
   } else {
@@ -42,12 +42,12 @@ app.get('/users/:id', (req, res) => {
   }
 });
 
-app.put('/users/:id', (req, res) => {
+app.put('/faqs/:id', (req, res) => {
   const userId = req.params.id;
-  const user = database.users[userId];
+  const user = database.faqs[userId];
   if (user) {
     const updatedUser = { ...user, ...req.body };
-    database.users[userId] = updatedUser;
+    database.faqs[userId] = updatedUser;
     saveDatabase();
     res.json(updatedUser);
   } else {
@@ -55,11 +55,11 @@ app.put('/users/:id', (req, res) => {
   }
 });
 
-app.delete('/users/:id', (req, res) => {
+app.delete('/faqs/:id', (req, res) => {
   const userId = req.params.id;
-  const user = database.users[userId];
+  const user = database.faqs[userId];
   if (user) {
-    delete database.users[userId];
+    delete database.faqs[userId];
     saveDatabase();
     res.json(user);
   } else {

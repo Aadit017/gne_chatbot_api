@@ -1,10 +1,9 @@
 {
-  "users": {
+  "faqs": {
     "1": {
       "id": 1,
-      "name": "John Doe",
-      "email": "john.doe@example.com",
-      "age": 35
+      "question": "John Doe",
+      "answer": "john.doe@example.com"
     },
     "2": {
       "id": 2,
