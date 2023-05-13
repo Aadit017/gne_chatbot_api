@@ -17,7 +17,10 @@ let database = JSON.parse(fs.readFileSync(dbFilePath));
 function saveDatabase() {
   fs.writeFileSync(dbFilePath, JSON.stringify(database, null, 2));
 }
-
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  next();
+});
 // Define routes for your API
 app.get('/faqs', (req, res) => {
   res.json(database.faqs);
