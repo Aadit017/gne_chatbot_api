@@ -32,6 +32,16 @@ app.post('/faqs', (req, res) => {
   res.json(newUser);
 });
 
+app.get('/faqs', (req, res) => {
+  const faqs = Object.values(database.faqs).map(({ question, answer }) => ({ question, answer }));
+  res.json(faqs);
+});
+
+app.get('/faq', (req, res) => {
+  const faqs = Object.values(database.faqs).map(({ question, answer }) => ({ question, answer }));
+  res.json(faqs);
+});
+
 app.get('/faqs/:id', (req, res) => {
   const userId = req.params.id;
   const user = database.faqs[userId];
@@ -55,17 +65,19 @@ app.put('/faqs/:id', (req, res) => {
   }
 });
 
-app.delete('/faqs/:id', (req, res) => {
-  const userId = req.params.id;
-  const user = database.faqs[userId];
-  if (user) {
-    delete database.faqs[userId];
+app.delete('/faqs/:question', (req, res) => {
+  const question = req.params.question;
+  const faqToDelete = Object.values(database.faqs).find(faq => faq.question === question);
+  if (faqToDelete) {
+    const faqIdToDelete = faqToDelete.id;
+    delete database.faqs[faqIdToDelete];
     saveDatabase();
-    res.json(user);
+    res.json(faqToDelete);
   } else {
-    res.status(404).send('User not found');
+    res.status(404).send('FAQ not found');
   }
 });
+
 
 app.get("/",(req,res)=>{
   res.send("working?")
