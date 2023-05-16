@@ -1,71 +1,85 @@
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 import spacy
 import json
-import smtplib
 
-nlp = spacy.load("en_core_web_sm")
+nlp = spacy.load("en_core_web_md")
 
 app = Flask(__name__)
 app.secret_key = "hello_hi"
 CORS(app)
 
-sender_email = "chatbot_gne@yahoo.com"
-sender_password = "GNDEC-chat"
-receiver_email = "devesh97531@gmail.com"
-subject = "Chatbot Question"
+threshold_similarity = 0.7
 
-def send_email(sender_email, sender_password, receiver_email, subject, message):
-    smtp_server = "smtp.mail.yahoo.com"
-    smtp_port = 587
+def calculate_similarity(query, text):
+    query_doc = nlp(query)
+    text_doc = nlp(text)
 
-    msg = MIMEMultipart()
-    msg["From"] = sender_email
-    msg["To"] = receiver_email
-    msg["Subject"] = subject
+    similarity_scores = []
+    for query_token in query_doc:
+        max_similarity = max(query_token.similarity(text_token) for text_token in text_doc)
+        similarity_scores.append(max_similarity)
 
-    msg.attach(MIMEText(message, "plain"))
+    avg_similarity = sum(similarity_scores) / len(similarity_scores)
+    return avg_similarity
 
-    try:
-        # Create a secure SSL/TLS connection with the SMTP server
-        with smtplib.SMTP(smtp_server, smtp_port) as server:
-            server.starttls()
-            # Login to the Gmail account
-            server.login(sender_email, sender_password)
-            # Send the email
-            server.send_message(msg)
-        print("Email sent successfully!")
-        return "Email sent successfully!"
-    except Exception as e:
-        print("An error occurred while sending the email:" + str(e))
-        return "An error occurred while sending the email:" + str(e)
-
-@app.route('/query',methods=['POST'])
+@app.route('/query', methods=['POST'])
 def get():
-    query = request.get_json()['query'];
+    query = request.get_json()['query']
+    
     with open("faqs.json") as faqs_json:
         faqs = json.load(faqs_json)
+    
     doc1 = nlp(query)
-    similarity_score = 0
-    answer = ''
+    response = []
+    
     for faq in faqs['faqs']:
-        doc2 = nlp(faq['question'])
-        score = doc1.similarity(doc2)
-        if score > similarity_score:
-            answer = faq['answer']
-            similarity_score = score
-    if similarity_score <= 0.2:
-        return send_email(sender_email,sender_password,receiver_email,subject,query), 200
-    return answer, 200
-
+        question = faq['question']
+        similarity_score = calculate_similarity(query, question)
+        
+        if similarity_score > threshold_similarity:
+            response.append({"question": question, "answer": faq['answer'], "similarity_score": similarity_score})
+    
+    if len(response) == 0:
+        with open("queries.json", "r") as queries_json:
+            queries = json.load(queries_json)
+        
+        with open("queries.json", "w") as queries_json:
+            queries['queries'].append({'question': query})
+            json.dump(queries, queries_json, indent=4)
+        
+        response.append({"question": query, "answer": "Couldn't find the answer to that question, but don't worry. We'll be replying back with the appropriate information as soon as possible.", "similarity_score": 0.0})
+    else:
+        response = sorted(response, key=lambda x: x["similarity_score"], reverse=True)
+    
+    return jsonify(response), 200
 
 @app.route('/get-all')
 def get_all():
     with open("faqs.json") as faqs_json:
         faqs = json.load(faqs_json)
     return jsonify(faqs)
+
+@app.route('/get-queries')
+def get_queries():
+    with open("queries.json") as queries_json:
+        queries = json.load(queries_json)
+    return jsonify(queries)
+
+@app.route('/remove-query', methods=['POST'])
+def remove_query():
+    json_data = request.get_json()
+    with open("queries.json", "r") as queries_json:
+        queries = json.load(queries_json)
+
+    index_to_delete = int(json_data['index'])
+    if index_to_delete is not None:
+        del queries['queries'][index_to_delete]
+
+    with open("queries.json", "w") as queries_json:
+        json.dump(queries, queries_json, indent=4)
+
+    return "removed successfully", 200
 
 @app.route('/add',methods=['POST'])
 def add():    
@@ -91,11 +105,6 @@ def remove():
         json.dump(faqs, faqs_json, indent=4)
 
     return "removed successfully", 200
-
-@app.route('/send/<req>',methods=['GET', 'POST'])
-def send(req):
-    query = req.replace('+', ' ')
-    return send_email(sender_email,sender_password,receiver_email,subject,query)
 
 if __name__ == '__main__':
     app.run(debug=True)
