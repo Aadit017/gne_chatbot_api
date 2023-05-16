@@ -26,28 +26,91 @@
         },
         {
             "question": "Does GNDEC organize technical events and conferences?",
-            "answer": "The tentative date for announcement of direct counseling in GNDEC is Mid of June. A notification regarding this will be put on the website of this college and an advertisement will also be given in the leading newspaper(s) of the state. For p"
+            "answer": "Yes, GNDEC organizes various technical events, workshops, seminars, and conferences to foster innovation, knowledge-sharing, and skill development among students and faculty."
         },
         {
             "question": "Who is the principal of the college",
             "answer": "Dr. Sehajpal Singh"
         },
         {
-            "question": "What is the tentative date for direct counseling and how to apply for it",
-            "answer": "The tentative date for announcement of direct counseling in GNDEC is Mid of June. A notification regarding this will be put on the website of this college and an advertisement will also be given in the leading newspaper(s) of the state. For participating in direct
+            "question":"What is the tentative date for direct counseling and how to apply for it",
+            "answer":"The tentative date for announcement of direct counseling in GNDEC is Mid of June. A notification regarding this will be put on the website of this college and an advertisement will also be given in the leading newspaper of the state. For participating in direct
             counseling candidate has to enroll online on the direct admission portal of this college (this
             portal will be active only after the announcement of direct admission) and then
-            send/submit by hand, the hard copy of filled form along with demand draft of direct fee in
-            the academic section of GNDEC"
+            send/submit by hand the hard copy of filled form along with demand draft of direct fee in
+            the academic section of GNDEC "
         },
         {
             "question":"What is the detail of various courses of B.Tech and intake in each course in GNDEC?",
-            "answer":"Detail of various courses along with intake can be obtained from the following link:
-            http://www.gndec.ac.in/sites/default/files/Courses_1.pdf"
+            "answer":"Detail of various courses along with intake can be obtained from the following link:www.gndec.ac.in/sites/default/files/Courses_1.pdf"
         },
         {
             "question":"What are eligibility criteria for admission to B.Tech first year?",
-            "answer"
+            "answer":"Eligibility Criteria
+            a) As per Punjab Government Notification 13/105/10-1TE2/700595 dated: 01/03/2016
+            eligibility criteria for admission to 1st year B.Tech. course is as under:-
+            For Engineering & Technology Courses
+            All Those candidates who have passed the 10+2 examination from a board recognized or
+            established by central/state government through legislation with Physics and Mathematics as
+            compulsory subjects along with one of the following subjects:
+            i) Chemistry
+            ii) Biotechnology
+            iii) Computer Science and
+            iv) Biology
+            Those candidates who have passed diploma in any engineering Trade from Punjab State Board of
+            Technical Education and Industrial Training, Chandigarh or Sant Longowal Institute of Engineering and
+            Technology, Longowal (SLIET), or any such examination from any other recognized board of Technical
+            Education.
+            OR
+            The candidate who have passed two years certificate from Sant Longowal Institute of Engineering and
+            Technology, Lonogowal (SLIET) shall be eligible.
+            "
+        },
+        {
+            "question":"What are eligibility criteria for admission to B.Tech. Second year (LEET)?",
+            "answer":"For B.Tech. (Lateral Entry) as per Punjab Government notification no. 8/40/2013-
+            1TE2/742157/1 dated 28.04.2016
+            For Engineering: The minimum qualification for admission to 2nd year (3rd semester) of B.Tech. curses
+            shall be as follows:-
+            I. All those students who have passed Diploma examnation from an AICTE approved institution and
+            have obtained at least 45 % marks (40% in case of candidateds belonging to resered category) in
+            appropriated branch of Engineering/ Technology shall be eligible to apply.
+            II. All those candidated who have passed B.Sc. Degree from a recognised University as defined by
+            UGC with at least 45% marks (40% in case of candidates belonging to reserve category) and
+            passed XII standard with mathematics as a subject shall be eligible to apply.
+            a) Students, who have passed B.Sc. Degree from a recognised University by UGC, shall clear
+            the subject of Engineering Graphics / Engineering drawing courses as defined and Engineering
+            Mechanics of the first year engineering programe along with 2nd year subjects.
+            III. It is further provided that studnets, who have passed Diploma in Engineering & Technology from
+            an AICTE approved Institution for B.Sc. Degree from a recognised University as defined by the UGC, shall
+            also be eligible for admission to the first year of Eningeering. This shall be considered only after the
+            vacancy at lateral entry are exahusted. "
+        },
+        {
+            "question":"What is the eligibility criteria and basic requirements for admission under fee waiver
+            scheme to B.Tech First year and B.Tech second year ",
+            "answer":"All Institutions affiliated to I.K. Gujral Punjab Technical University and Maharaja Ranjit
+            Singh State Technical University shall follow “Fee Waiver Scheme” as prescribed by AICTE
+            and notified by Government of Punjab vide its notification no. 13/60/08-1TE2/1797, dated
+            23rd May, 2011 and notification no. 13/60/08/1TE2/2007 dated 31.05.2012. Other
+            Institutions/Universities may notify their respective fee waiver scheme separately.
+            These notifications are available on the IKG-PTU website at the following link:
+            https://ptu.ac.in/admnotifi.aspx as well as on the website of GNDEC"
+        },
+        {
+            "question" : ".What are the rules for adjustment/refund of fees?",
+            "answer":"RULES FOR ADJUSTMENT / REFUND OF FEES
+            As per Notification No. 13/105/2010-1TE2/314 Dated: 28-01-2011 and Notification No.:
+            13/105/2011-1TE2/325 dated 28-01-2011:-
+            (a) In case a student changes his/her college/ University during centralized counselling
+            conducted by IKGPTU his/her fee shall be refunded by the previous Institution after
+            deduction of Rs. 1000/-only and the original documents will be returned immediately.
+            (b) In case a student surrenders his/her seat within 7 days of the end of the online counselling,
+            he/she must submit application to the college and register online on IKGPTU website
+            www.ptuadmissions.nic.in. IKGPTU shall only forward such cases to the concerned
+            colleges/Universities and colleges must refund his/her full fee after deduction of Rs.
+            1000/-only.
+            "
         }
     ]
 }
