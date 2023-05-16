@@ -1,6 +1,7 @@
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from flask import Flask
+from flask import Flask, jsonify
+from flask_cors import CORS
 import spacy
 import json
 import smtplib
@@ -9,15 +10,16 @@ nlp = spacy.load("en_core_web_sm")
 
 app = Flask(__name__)
 app.secret_key = "hello_hi"
+CORS(app)
 
-sender_email = "reviewgagteam@gmail.com"
-sender_password = "arnav00782"
+sender_email = "chatbot_gne@yahoo.com"
+sender_password = "GNDEC-chat"
 receiver_email = "devesh97531@gmail.com"
 subject = "Chatbot Question"
 
 def send_email(sender_email, sender_password, receiver_email, subject, message):
-    smtp_server = "smtp.gmail.com"
-    smtp_port = 465
+    smtp_server = "smtp.mail.yahoo.com"
+    smtp_port = 587
 
     msg = MIMEMultipart()
     msg["From"] = sender_email
@@ -26,14 +28,15 @@ def send_email(sender_email, sender_password, receiver_email, subject, message):
 
     msg.attach(MIMEText(message, "plain"))
 
-    try:
-        with smtplib.SMTP(smtp_server, smtp_port) as server:
-            server.starttls()
-            server.login(sender_email, sender_password)
-            server.send_message(msg)
-        return "Email sent successfully!"
-    except Exception as e:
-        return "An error occurred while sending the email:", str(e)
+    smtp =  smtplib.SMTP(smtp_server, smtp_port)
+    print("loggin in");
+    smtp.starttls()
+    print("started tls");
+    smtp.login(sender_email, sender_password)
+    print("logged in");
+    smtp.send_email(msg)
+    smtp.quit()
+    return "Email sent successfully!"
 
 @app.route('/get/<req>',methods=['GET', 'POST'])
 def get(req):
@@ -43,8 +46,7 @@ def get(req):
     doc1 = nlp(query)
     similarity_score = 0
     answer = ''
-    for faq in faqs['faqs']:
-        print(faq)
+    for faq in faqs['faqs'].values():
         doc2 = nlp(faq['question'])
         score = doc1.similarity(doc2)
         if score > similarity_score and score > 0.2:
@@ -54,6 +56,12 @@ def get(req):
             send_email(sender_email,sender_password,receiver_email,subject,query)
     return(answer)
 
+
+@app.route('/get-all')
+def get_all():
+    with open("faqs.json") as faqs_json:
+        faqs = json.load(faqs_json)
+    return jsonify(faqs)
 
 @app.route('/send/<req>',methods=['GET', 'POST'])
 def send(req):
